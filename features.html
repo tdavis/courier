@@ -1,0 +1,230 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Feature Overview &mdash; Courier SNAPSHOT documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'SNAPSHOT',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Courier SNAPSHOT documentation" href="index.html"/>
+        <link rel="next" title="Technology" href="technology.html"/>
+        <link rel="prev" title="The Why And When Of Courier" href="why.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Courier</a>
+        <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="why.html">The Why And When Of Courier</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="why.html#when-services-attack">When Services Attack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="why.html#courier-to-the-rescue">Courier To The Rescue!</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#http-websocket-communication">HTTP/WebSocket Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#push-pull-or-stream">Push, Pull, or Stream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-and-delivery-guarantees">Data and Delivery Guarantees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-throughput-low-utilization">High Throughput; Low Utilization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#high-performance-and-reliability-with-the-jvm">High Performance and Reliability with the JVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#reactive-with-akka">Reactive with Akka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#robust-with-zookeeper">Robust with ZooKeeper</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#publishers">Publishers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#subscribers">Subscribers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pub.html">Publish/Publisher API</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">Courier</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Feature Overview</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <div class="section" id="feature-overview">
+<h1>Feature Overview<a class="headerlink" href="#feature-overview" title="Permalink to this headline">¶</a></h1>
+<p>This document provides a high-level overview of the following core features:</p>
+<ul class="simple">
+<li>HTTP/WebSocket-based communication</li>
+<li>Flexible subscription models support <em>HTTP Push</em>, <em>HTTP Pull</em>, and
+<em>WebSocket</em> delivery methods</li>
+<li>Robust data and delivery guarantees</li>
+<li>High throughput and low resource utilization</li>
+</ul>
+<div class="section" id="http-websocket-communication">
+<h2>HTTP/WebSocket Communication<a class="headerlink" href="#http-websocket-communication" title="Permalink to this headline">¶</a></h2>
+<p>Instead of inventing yet another wire protocol, Courier uses
+HTTP—along with WebSockets for full-duplex communication.</p>
+<p>Additionally, Courier does not demand you use a particular
+serialization format. At the time of this writing it supports JSON
+with optional GZIP encoding, which is good enough for most use
+cases. Support for other &#8220;command and control&#8221; serializations are on
+the roadmap, though in any case we&#8217;re happy to deliver messages using
+whatever <em>Content-Type</em> you&#8217;d like!</p>
+</div>
+<div class="section" id="push-pull-or-stream">
+<h2>Push, Pull, or Stream<a class="headerlink" href="#push-pull-or-stream" title="Permalink to this headline">¶</a></h2>
+<p>Have your messages pushed to an HTTP URL, pulled from Courier at your
+leisure, or streamed over a persistent connection via the <a class="reference external" href="http://en.wikipedia.org/wiki/WebSocket">WebSocket</a>
+protocol, it&#8217;s up to you!</p>
+</div>
+<div class="section" id="data-and-delivery-guarantees">
+<h2>Data and Delivery Guarantees<a class="headerlink" href="#data-and-delivery-guarantees" title="Permalink to this headline">¶</a></h2>
+<p>Courier is built on the back of replicated, highly-available systems
+that guarantee a consistent, correct view of data so long as a quorum
+exists. A response from Courier means your event was stored
+successfully and redundantly.</p>
+<p>In addition to storage guarantees, Courier also offers <em>delivery</em>
+guarantees. Every Subscriber that exists at the point of publishing
+will receive the message. Courier also supplies an audit log of every
+message received by each Subscriber, along with how long it took to
+receive a reply, how many times sending was retried, etc. Every
+individual subscription may define its own policy, including:</p>
+<ul class="simple">
+<li>Frequency and total number of retries</li>
+<li>How large a message queue may become</li>
+<li>How long the subscriber should remain offline before Courier gives up</li>
+<li>How un-deliverable messages should be handled</li>
+</ul>
+<p>And so forth. Policy options differ based on the type of subscription
+(push, pull, or stream).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">While Courier itself is <em>not</em> <a class="reference external" href="http://en.wikipedia.org/wiki/High_availability">High-Availability (HA)</a> yet, its
+supporting services are. Courier supplies end-to-end <em>durable</em>
+storage, meaning your messages won&#8217;t be lost if Courier itself
+crashes or otherwise disappears, making it ideal for volatile Cloud
+environments.</p>
+</div>
+</div>
+<div class="section" id="high-throughput-low-utilization">
+<h2>High Throughput; Low Utilization<a class="headerlink" href="#high-throughput-low-utilization" title="Permalink to this headline">¶</a></h2>
+<p>Courier is an <a class="reference external" href="http://en.wikipedia.org/wiki/Event-driven_architecture">Event-driven</a> system, meaning it can handle orders of
+magnitude more concurrent messages and subscribers than most other
+systems. It can effortlessly scale up to <strong>millions of messages per
+second</strong> on a single machine while maintaining a small memory
+footprint.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Additionally, Courier&#8217;s supporting services scale horizontally—or
+near to it—meaning overall throughput can be continuously improved
+simply by adding more machines!</p>
+</div>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="technology.html" class="btn btn-neutral float-right" title="Technology"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="why.html" class="btn btn-neutral" title="The Why And When Of Courier"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, Rackmind Inc.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>
