@@ -82,7 +82,7 @@ many as we can without overloading the WAL clients.
    waldots -> dots [lhead=cluster1,ltail=cluster0,minlen=2,arrowhead=inv];
    WALClientN -> WorkerN [lhead=cluster1,ltail=cluster0,minlen=2,arrowhead=inv];
 
-   sub [label="(Push) Subscriber 1"]
+   sub [label="(Push) Subscriber 1"];
 
    Worker1 -> sub;
    Worker1 -> sub;
