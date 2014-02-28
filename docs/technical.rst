@@ -89,8 +89,6 @@ many as we can without overloading the WAL clients.
    Worker1 -> sub;
    Worker1 -> sub;
 
-  }
-
 Each active Subscriber has their own personal "Worker". This is just
 a more recognizable name for an Actor_—a pseudo-process that deals
 solely with a given Subscriber. (Responses are automatically routed
